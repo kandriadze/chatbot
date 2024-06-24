@@ -24,7 +24,7 @@ products_df = pd.read_csv('products.csv')
 
 # Create a TF-IDF vectorizer
 vectorizer = TfidfVectorizer()
-tfidf_matrix = vectorizer.fit_transform(products_df['Product details'])
+tfidf_matrix = vectorizer.fit_transform(products_df['About Product'])
 
 # Tokenize and process intents
 for intent in intents['intents']:
@@ -134,10 +134,10 @@ def chatbot_response(text):
 
     if 'product' in ints[0]['intent']:
         top_products = find_top_products(text, products_df, vectorizer, tfidf_matrix)
-        product_list = top_products[['product_name', 'product_url']].to_dict('records')
+        product_list = top_products[['Product Name', 'Product Url']].to_dict('records')
         response = res + "\nHere are the top 5 products I found for you:\n"
         for product in product_list:
-            response += f"{product['product_name']}: {product['product_url']}\n"
+            response += f"{product['Product Name']}: {product['Product Url']}\n"
         return response
     else:
         return res
