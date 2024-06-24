@@ -24,7 +24,7 @@ products_df = pd.read_csv('products.csv')
 
 # Create a TF-IDF vectorizer
 vectorizer = TfidfVectorizer()
-tfidf_matrix = vectorizer.fit_transform(products_df['product_description'])
+tfidf_matrix = vectorizer.fit_transform(products_df['Product details'])
 
 # Tokenize and process intents
 for intent in intents['intents']:
